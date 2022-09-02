@@ -1,6 +1,6 @@
 const {userIsExist}=require('../database/qeures')
 const bcrypt = require("bcryptjs");
-const {jwt}=require('../mw')
+const {jwtFun}=require('../mw')
 const signIn=(req,res)=>{
  const  {email,password}=req.body;
  userIsExist(email).then(({rows})=>{
@@ -11,7 +11,7 @@ const signIn=(req,res)=>{
     bcrypt.compare(password,rows[0].password).then(result=>{
       if(result){
         userIsExist(email)
-        .then(({rows})=>jwt({id:rows[0].id,name:rows[0].name,img:rows[0].img},res))
+        .then(({rows})=>jwtFun.jwtFun({id:rows[0].id,name:rows[0].name,img:rows[0].img},res))
       }else{
 
 res.json({msg:"password is false"})
