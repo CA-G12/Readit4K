@@ -5,13 +5,20 @@ const userPassword=document.querySelector('.password')
 const userConfirm=document.querySelector('.confirm')
 const userImg=document.querySelector('.img')
 const signUpBtn=document.querySelector('.sign-up')
+const signInBtn=document.querySelector('.sign-in')
+const email=document.querySelector('.email-sign-in')
+const password=document.querySelector('.password-sign-in')
 
 signUpBtn.addEventListener('click',(e)=>{
   e.preventDefault()
-  console.log(userPassword);
   signUp()
 })
+signInBtn.addEventListener('click',(e)=>{
+  e.preventDefault()
+  console.log(222);
+  signIn()
 
+})
 fetch('/get-posts').then(res=>res.json()).then(posts=>handelPosts(posts))
 
 function createPost(item) {
@@ -49,19 +56,34 @@ function handelPosts(posts) {
 }
 
 function signUp(){
-const userInfo={
-  name:userName.value ,
-  email:userEmail.value ,
-  password:userPassword.value ,
-  userConfirm: userConfirm.value,
-  img:userImg.value 
-}
-fetch('/sign-up', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(userInfo),
+  const userInfo={
+    name:userName.value ,
+    email:userEmail.value ,
+    password:userPassword.value ,
+    userConfirm: userConfirm.value,
+    img:userImg.value 
+  }
+  fetch('/sign-up', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(userInfo),
+  
+  })
+  }
 
-})
-}
+  function signIn(){
+    const userInfo={
+      email:email.value ,
+      password:password.value ,
+    }
+    fetch('/sign-in', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userInfo),
+    
+    })
+    }
