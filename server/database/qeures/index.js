@@ -1,6 +1,7 @@
 const {getAllpostswithUseAndStars,getComments}=require('./posts')
+const {userIsExist,saveNewUser}=require('./users')
 
 
 module.exports={
-  getAllpostswithUseAndStars,getComments
+  getAllpostswithUseAndStars,getComments,userIsExist,saveNewUser
 }
