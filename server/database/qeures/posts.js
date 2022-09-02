@@ -13,8 +13,7 @@ const  connection=require('../config/connection');
           return connection.query(query)
     }
    const  getComments=()=>{
-      this.query=`select comments.*,users.id,users.email from comments left join users on comments.user_id =users.id;`
-      return connection.query(this.query)
-}
+      const query=`select comments.*,users.id,users.email from comments left join users on comments.user_id =users.id;`
+      return connection.query(query)}
     
 module.exports={getAllpostswithUseAndStars,getComments};

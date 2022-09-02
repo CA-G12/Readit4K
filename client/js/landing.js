@@ -1,4 +1,16 @@
 const posts=document.querySelector('.posts')
+const userName=document.querySelector('.name')
+const userEmail=document.querySelector('.email')
+const userPassword=document.querySelector('.password')
+const userConfirm=document.querySelector('.confirm')
+const userImg=document.querySelector('.img')
+const signUpBtn=document.querySelector('.sign-up')
+
+signUpBtn.addEventListener('click',(e)=>{
+  e.preventDefault()
+  console.log(userPassword);
+  signUp()
+})
 
 fetch('/get-posts').then(res=>res.json()).then(posts=>handelPosts(posts))
 
@@ -34,4 +46,22 @@ function handelPosts(posts) {
   posts.forEach(post => {
     createPost(post)
   });
+}
+
+function signUp(){
+const userInfo={
+  name:userName.value ,
+  email:userEmail.value ,
+  password:userPassword.value ,
+  userConfirm: userConfirm.value,
+  img:userImg.value 
+}
+fetch('/sign-up', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(userInfo),
+
+})
 }
