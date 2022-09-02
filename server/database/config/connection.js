@@ -5,15 +5,15 @@ const { NODE_ENV, DATABASE_URL, DEV_DB_URL, TEST_DB_URL } = process.env;
 
 let connectionString = "";
 let ssl = false;
-
+console.log(NODE_ENV);
 switch (NODE_ENV) {
-  case "PROD":
+  case "production":
     connectionString = DATABASE_URL;
     ssl = {
       rejectUnauthorized: false,
     };
     break;
-  case "DEV":
+  case "development":
     connectionString = DEV_DB_URL;
     break;
 
