@@ -4,32 +4,88 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/style.css">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+/>
   <title>Document</title>
 </head>
 <body>
-  <header>header </header>
-  <section class="form-sign-up">
-    sign up
-    <form class="form" action="">
-      <input class="name" placeholder="name" type="text">
-      <input class="email" placeholder="email"  type="text">
-      <input class="password" placeholder="password"  type="text">
-      <input class="confirm" placeholder="confirm"  type="text">
-      <input class="img" placeholder="img"  type="text">
-      <button class="sign-up">sign up</button>
-    </form>
-  </section>
-  <section class="form-sign-in">
-    sign in
-    <form class="form" action="">
-      <input class="email-sign-in" placeholder="email"  type="text">
-      <input class="password-sign-in" placeholder="password"  type="text">
-      <button class="sign-in">sign in</button>
-    </form>
-  </section>
+  <header>
+<img class="logo" src="./img/logoo.png" alt="">
+
+<div class="buttons-box">
+ 
+</div>
+  </header>
+  
+  <div class="forms">
+    <div class="main">  	
+      <input type="checkbox" id="chk">
+  
+        <div class="signup">
+          <form>
+            <label for="chk" class="sig">Sign up</label>
+          
+      <div class="user-box">
+        <input class="name" type="text" title="Enter Username" required>
+        <label>Username</label>
+      </div>
+      <div class="user-box">
+        <input class="email" type="text" title="Enter email" required>
+        <label>Email</label>
+      </div>
+      <div class="user-box">
+        <input class="password" type="password" title="Enter password" required>
+        <label>Password</label>
+      </div>
+  
+      <div class="user-box">
+        <input class="confirm" type="password" title="confirm password" required>
+        <label>confirm password</label>
+      </div>
+  
+      <div class="user-box">
+        <input class="img" type="password" title="Enter password" required>
+        <label>Image</label>
+      </div>
+            
+            <button class="sign-up btn-grad" >Sign up</button>
+          </form>
+        </div>
+  
+        <div class="login">
+          <form>
+            <label for="chk" class="log" >Login</label>
+    
+                    
+  
+      <div class="user-box">
+  
+        <input class="email-sign-in" type="text" title="Enter Username" required>
+  
+        <label>Email</label>
+  
+      </div>				
+  
+      <div class="user-box">
+  
+        <input class="password-sign-in" type="password" title="Enter password" required>
+  
+        <label>Password</label>
+  
+      </div>
+            <button class="sign-in btn-grad">Login</button>
+          </form>
+        </div>
+    </div>
+  </div>
+				
+	
+
 
   <main class="posts">
-
 
   </main>
   <script src="./js/landing.js"></script>

@@ -1,9 +1,9 @@
 const express = require("express");
 const app=express();
-
-const { join } = require("path");
 const compression = require("compression");
+const {auth}=require('./mw')
 require('dotenv').config()
+const cookieParser = require('cookie-parser');
 
 const router=require('./routers')
 const port =process.env.PORT||5000
@@ -12,13 +12,20 @@ app.disable("x-powered-by");
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(compression());
-
-const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+app.use(auth.auth)
+app.use('/user',(req,res,next)=>{
+  if(req.user){
+    res.json(req.user)
+  }else{
+    res.json({msg:"user is not"})
+  }
+  next()
+})
 const path = require('path');
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'client'))
-})
+
+
 app.use(express.static(path.join(__dirname, '..', 'client')))
 
 
