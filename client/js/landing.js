@@ -11,12 +11,29 @@ const password=document.querySelector('.password-sign-in')
 const rigsterBtn=document.createElement('button')
 const signinBtn=document.createElement('button')
 const rigsterForm=document.querySelector('.main')
-const loginForm=document.querySelector('.login')
 const btnBox=document.querySelector('.buttons-box')
 const user=document.createElement('h2')
 const imgUser=document.createElement('img')
 const chk=document.querySelector('#chk')
-const body=document.querySelector('body')
+//!===================================================================
+//* form add post
+const addPostBox=document.querySelector('.add-post')
+const fromPost=document.createElement('form')
+const inputFromPost=document.createElement('textarea')
+const addPost=document.createElement('button')
+const titleForm=document.createElement('h2')
+const imgForm=document.createElement('img')
+imgForm.src='./img/logo.png'
+imgForm.setAttribute('class','imgForm')
+titleForm.textContent='ADD POST'
+addPost.textContent='ADD'
+fromPost.setAttribute('class','formPost')
+fromPost.appendChild(titleForm)
+fromPost.appendChild(inputFromPost)
+fromPost.appendChild(addPost)
+fromPost.appendChild(imgForm)
+
+//!===================================================================
 let isChk=false
 fetch('/user').then(res=>res.json()).then(res=>{
   if(res.msg){
@@ -31,6 +48,25 @@ fetch('/user').then(res=>res.json()).then(res=>{
     imgUser.src=res.img
     btnBox.appendChild(user)
     btnBox.appendChild(imgUser)
+    addPostBox.appendChild(fromPost)
+    // fromPost.append(imgUser)
+
+    addPost.addEventListener('click',(e)=>{
+      e.preventDefault()
+      const postInfo={
+        user_id:res.id,
+        post:inputFromPost.value
+      }
+      fetch('/add-post', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(postInfo),
+      
+      }).then(res=>res.json()).then(item=>createPost(item,res))
+    })
+ 
   }
   fetch('/get-posts').then(res=>res.json()).then(posts=>handelPosts(posts,res))
 
@@ -94,6 +130,8 @@ function createPost(item,res) {
   const nameUser =document.createElement('h3')
   const star =document.createElement('p')
   const starIcon =document.createElement('i')
+  post.textContent=item.post
+
   if(item.user_id===res.id){
     const deleteBtn=document.createElement('button')
     deleteBtn.textContent='X'
@@ -146,11 +184,11 @@ function createPost(item,res) {
   
   star.setAttribute('class','starNum')
   const comments=document.createElement('ul')
-  nameUser.textContent=item.name
+  nameUser.textContent=item.name||res.name
   posts.appendChild(article)
-  if(item.imguser){
+  if(item.imguser||(res.id===item.user_id)){
     const img =document.createElement('img')
-    img.src=item.imguser
+    img.src=item.imguser ||res.img
     img.setAttribute('class','imgUser')
     article.appendChild(img)
 
@@ -161,15 +199,16 @@ function createPost(item,res) {
   article.appendChild(post)
   article.appendChild(star)
   article.appendChild(comments)
-  star.textContent=item.s|| ' '
-
+  star.textContent=item.s|| 0
+if(item.comments){
   item.comments.forEach(e=>{
     const comment =document.createElement('li')
     comments.appendChild(comment)
     comment.textContent=e.comment
   })
 
-  post.textContent=item.post
+}
+
 
 }
 

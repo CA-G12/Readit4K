@@ -21,8 +21,12 @@ const  connection=require('../config/connection');
    const  getComments=()=>{
       const query=`select comments.*,users.id,users.email,users.name,users.img from comments left join users on comments.user_id =users.id;`
       return connection.query(query)}
+    const addPostQuery=(user_id,post)=>{
+      const query=`insert into posts (user_id ,post) values ($1,$2) returning *;`
+      return connection.query(query,[user_id,post])
+    }
     
-module.exports={getAllpostswithUseAndStars,getComments,getStarsData};
+module.exports={getAllpostswithUseAndStars,getComments,getStarsData,addPostQuery};
 
 
 // `
