@@ -104,10 +104,14 @@ button {
   overflow: hidden;
   border-radius: 10px;
   box-shadow: 5px 20px 50px #000;
-  bottom: 1500px;
+  right: -100%;
   transition: 0.5s linear;
   margin: auto;
   z-index: 10;
+}
+
+.post {
+  min-height: 250px;
 }
 
 #chk {
@@ -232,15 +236,15 @@ label[for="chk"] {
 
 .posts {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
   margin-top: 100px;
-  gap: 20px;
+  gap: 100px;
 }
 
 .card {
-  max-width: 400px;
-  min-width: 400px;
+  width: 60%;
+  min-width: 350px;
   background-size: 100%;
   min-height: 280px;
   background: rgba(0, 0, 0, 0.192);
@@ -373,4 +377,52 @@ label[for="chk"] {
   background-color: white;
   width: 40px !important;
   height: 40px !important;
+}
+
+.comment {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #0c0f2287;
+  margin-top: 2px;
+  border-bottom: 1px solid white;
+}
+
+.card ul {
+  width: 100%;
+}
+
+.comment div {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+  margin-left: 20px;
+}
+
+.comment p {
+  margin-left: 20px;
+
+}
+
+.comment img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.comment-box {
+  width: 100%;
+}
+
+.comment-box input {
+  padding: 5px;
+  width: 80%;
+}
+
+.comment-box button {
+  padding: 5px;
+
+  width: 20%;
 }
