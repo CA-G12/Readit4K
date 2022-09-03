@@ -32,6 +32,9 @@ body {
 header {
   background: var(--main-color);
   padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -124,7 +127,9 @@ button {
 }
 
 .post {
-  min-height: 250px;
+  min-height: 130px;
+  padding: 20px;
+  text-align: start;
 }
 
 #chk {
@@ -244,7 +249,7 @@ label[for="chk"] {
 }
 
 .card {
-  width: 60%;
+  width: 50%;
   min-width: 350px;
   background-size: 100%;
   min-height: 280px;
@@ -253,7 +258,8 @@ label[for="chk"] {
   color: var(--aliceblue);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  box-shadow: 5px 20px 50px #000;
+  border-radius: 12px 18px 0 0;
   justify-content: space-between;
 
 }
@@ -268,7 +274,20 @@ label[for="chk"] {
 }
 
 .card h3 {
-  margin-top: 40px;
+  font-size: 20px;
+  font-family: 'Roboto Slab', serif;
+  font-style: normal;
+  font-weight: 900;
+  color: rgb(103, 71, 31);
+  font-size: 45px;
+  line-height: 73px;
+  text-align: center;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #ffb504 0%, #caba93 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 86%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+  background-clip: text;
 }
 
 .starNum {
@@ -291,6 +310,8 @@ label[for="chk"] {
   top: 5px;
   padding: 5px;
   border-radius: 50%;
+  background-color: #080d1a;
+  color: white;
 }
 
 .mystyle {
@@ -325,9 +346,20 @@ label[for="chk"] {
 }
 
 .formPost h2 {
-  margin-top: 20px;
-  font-size: 1.5em;
-  color: white;
+  font-family: 'Roboto Slab', serif;
+  font-style: normal;
+  font-weight: 900;
+  width: 100%;
+  color: rgb(103, 71, 31);
+  font-size: 35px;
+  line-height: 73px;
+  text-align: center;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #ffb504 0%, #caba93 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 86%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+  background-clip: text;
 }
 
 .formPost textarea {
@@ -340,7 +372,7 @@ label[for="chk"] {
   outline: none;
   background: transparent;
   width: 90%;
-  min-height: 55%;
+  min-height: 40%;
 }
 
 .formPost button {
@@ -385,10 +417,11 @@ label[for="chk"] {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  background-color: #0c0f2287;
+  background-color: #22232a87;
   margin-top: 2px;
   position: relative;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid rgb(173, 141, 59);
+  padding: 5px 0;
 }
 
 .card ul {
@@ -404,7 +437,7 @@ label[for="chk"] {
 }
 
 .comment p {
-  margin-left: 20px;
+  margin-left: 55px;
 
 }
 
@@ -420,7 +453,9 @@ label[for="chk"] {
 
 .comment-box input {
   padding: 5px;
+  background-color: #b5babe;
   width: 80%;
+  outline: none;
 }
 
 .comment-box button {
@@ -491,5 +526,17 @@ label[for="chk"] {
 .deleteComment {
   position: absolute;
   right: 20px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #232526;
+  color: white;
   top: 5px;
+}
+
+.addComment {
+  background-image: linear-gradient(to right, #2b5876 0%, #4e4376 51%, #2b5876 100%);
+  color: white;
+  font-weight: 600;
+  padding: 7px 0 !important;
 }
