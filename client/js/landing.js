@@ -250,7 +250,7 @@ function createPost(item,res) {
       },
       body: JSON.stringify(commentInfo),
     
-    }).then(res=>res.json()).then(res=>handelComment(res,comments))
+    }).then(res=>res.json()).then(ite=>handelComment(ite,comments,res,item))
   })
  }
   article.appendChild(nameUser)
@@ -262,19 +262,46 @@ function createPost(item,res) {
   star.textContent=item.s|| 0
 if(item.comments){
   item.comments.forEach(e=>{
-    handelComment(e,comments,res)
+    handelComment(e,comments,res,item)
   })
 
 }
 
 
 }
-function handelComment(e,comments) {
+function handelComment(e,comments,res,item) {
   const comment =document.createElement('section')
   const box=document.createElement('div')
   const author =document.createElement('h4')
   const imgAuthor =document.createElement('img')
   const content=document.createElement('p')
+  const deleteComment=document.createElement('button')
+  deleteComment.textContent='x'
+  deleteComment.setAttribute('class','deleteComment')
+
+  if(res.id===e.user_id|| res.id==item.user_id){
+    comment.appendChild(deleteComment)
+    deleteComment.addEventListener('click',()=>{
+      console.log(item);
+      const deleteComment={
+        comment_id:e.id,
+        user_id:e.user_id,
+        post_user_id:item.user_id
+      }
+      comment.remove()
+      fetch('/delete-comment', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(deleteComment),
+      
+      })
+    })
+
+  }
+
+
   author.textContent=e.name
   imgAuthor.src=e.img
   content.textContent=e.comment

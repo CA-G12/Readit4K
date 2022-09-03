@@ -387,6 +387,7 @@ label[for="chk"] {
   align-items: flex-start;
   background-color: #0c0f2287;
   margin-top: 2px;
+  position: relative;
   border-bottom: 1px solid white;
 }
 
@@ -485,4 +486,10 @@ label[for="chk"] {
   position: absolute;
   opacity: 0;
   z-index: -10;
+}
+
+.deleteComment {
+  position: absolute;
+  right: 20px;
+  top: 5px;
 }
