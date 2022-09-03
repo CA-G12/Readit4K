@@ -66,7 +66,7 @@ fetch('/user').then(res=>res.json()).then(res=>{
         },
         body: JSON.stringify({}),
       
-      }).then(res=>window.location.href='/')
+      }).then(window.location.href='/')
     })
     addPost.addEventListener('click',(e)=>{
       e.preventDefault()
@@ -220,6 +220,7 @@ function createPost(item,res) {
   const commentInputBox=document.createElement('form')
   const commentInput=document.createElement('input')
   const commentBtn=document.createElement('button')
+  commentBtn.setAttribute('class','addComment')
   nameUser.textContent=item.name||res.name
   posts.appendChild(article)
   if(item.imguser||(res.id===item.user_id)){
