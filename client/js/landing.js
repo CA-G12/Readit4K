@@ -78,25 +78,29 @@ fetch('/user').then(res=>res.json()).then(res=>{
 rigsterBtn.addEventListener('click',()=>{
 
   if(!isChk){
-  rigsterForm.style.bottom='-80px'
-  isChk=true
+    rigsterForm.style.position='fixed';
+    rigsterForm.style.right='0%'
+
+    isChk=true
   console.log( chk.checked);
   }else{
-  rigsterForm.style.bottom='1500px'
+    rigsterForm.style.position='absolute';
+
+  rigsterForm.style.right='-100%'
   isChk=false
   }
 
 })
 signinBtn.addEventListener('click',()=>{
   if(!chk.checked){
-    rigsterForm.style.bottom='-80px'
-  // loginForm.style.transform='translateY(-180px)'
+    rigsterForm.style.right='0%'
+    rigsterForm.style.position='fixed';
 
   chk.checked=true
   console.log( chk.checked);
   }else{
-    console.log('tt');
-  rigsterForm.style.bottom='1500px'
+    rigsterForm.style.position='absolute';
+  rigsterForm.style.right='-100%'
   chk.checked=false
 
   }
@@ -104,10 +108,11 @@ signinBtn.addEventListener('click',()=>{
 })
 
 posts.addEventListener('click',()=>{
-  if (rigsterForm.style.bottom=='-80px') {
+  if (    rigsterForm.style.position==='fixed'  ) {
     isChk=false
-    rigsterForm.style.bottom='1500px'
-    console.log(isChk);
+    rigsterForm.style.position='absolute';
+    rigsterForm.style.right='-100%';
+        console.log(isChk);
   }
 
 })
@@ -131,7 +136,7 @@ function createPost(item,res) {
   const star =document.createElement('p')
   const starIcon =document.createElement('i')
   post.textContent=item.post
-
+  post.setAttribute('class','post')
   if(item.user_id===res.id){
     const deleteBtn=document.createElement('button')
     deleteBtn.textContent='X'
@@ -200,6 +205,9 @@ function createPost(item,res) {
   
   star.setAttribute('class','starNum')
   const comments=document.createElement('ul')
+  const commentInputBox=document.createElement('form')
+  const commentInput=document.createElement('input')
+  const commentBtn=document.createElement('button')
   nameUser.textContent=item.name||res.name
   posts.appendChild(article)
   if(item.imguser||(res.id===item.user_id)){
@@ -209,23 +217,61 @@ function createPost(item,res) {
     article.appendChild(img)
 
   }
- 
+  commentInputBox.setAttribute('class','comment-box')
+  commentBtn.textContent=`ADD`
+  commentInput.placeholder='comment'
+ if(res.id){
+  commentInputBox.appendChild(commentInput)
+  commentInputBox.appendChild(commentBtn)
+  commentBtn.addEventListener('click',(e)=>{
+    e.preventDefault()
+    const commentInfo={
+      comment:commentInput.value,
+      post_id:item.id,
+      user_id:res.id
+    }
+    commentInput.value=''
+    fetch('/add-comment', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(commentInfo),
+    
+    }).then(res=>res.json()).then(res=>handelComment(res,comments))
+  })
+ }
   article.appendChild(nameUser)
   article.appendChild(starIcon)
   article.appendChild(post)
   article.appendChild(star)
+  article.appendChild(commentInputBox)
   article.appendChild(comments)
   star.textContent=item.s|| 0
 if(item.comments){
   item.comments.forEach(e=>{
-    const comment =document.createElement('li')
-    comments.appendChild(comment)
-    comment.textContent=e.comment
+    handelComment(e,comments,res)
   })
 
 }
 
 
+}
+function handelComment(e,comments) {
+  const comment =document.createElement('section')
+  const box=document.createElement('div')
+  const author =document.createElement('h4')
+  const imgAuthor =document.createElement('img')
+  const content=document.createElement('p')
+  author.textContent=e.name
+  imgAuthor.src=e.img
+  content.textContent=e.comment
+  comment.appendChild(box)
+  box.appendChild(imgAuthor)
+  box.appendChild(author)
+  comment.appendChild(content)
+  comment.setAttribute('class','comment')
+  comments.appendChild(comment)
 }
 
 function handelPosts(posts,res) {
