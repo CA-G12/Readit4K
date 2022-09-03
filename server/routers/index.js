@@ -1,5 +1,5 @@
 const {getAllPosts,signUp,signIn,checkStar
-  ,addPost,deletePost,addComment}=require('../controlers')
+  ,addPost,deletePost,addComment,signOut}=require('../controlers')
 const router = require('express').Router();
 
 router.get('/get-posts',getAllPosts);
@@ -9,4 +9,5 @@ router.post('/is-star',checkStar)
 router.post('/add-post',addPost)
 router.delete('/delete-post',deletePost)
 router.post('/add-comment',addComment)
+router.post('/sign-out',signOut)
 module.exports=router

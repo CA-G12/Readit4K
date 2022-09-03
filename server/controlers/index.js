@@ -5,7 +5,8 @@ const checkStar=require('./checkStar')
 const addPost=require('./addPost')
 const deletePost=require('./deletePost')
 const addComment=require('./addComment')
+const signOut=require('./signOut')
 module.exports={
   getAllPosts,signUp,signIn,checkStar,
-  addPost,deletePost,addComment
+  addPost,deletePost,addComment,signOut
 }

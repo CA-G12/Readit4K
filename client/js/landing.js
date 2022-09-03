@@ -23,6 +23,7 @@ const inputFromPost=document.createElement('textarea')
 const addPost=document.createElement('button')
 const titleForm=document.createElement('h2')
 const imgForm=document.createElement('img')
+const signOut=document.querySelector('button')
 imgForm.src='./img/logo.png'
 imgForm.setAttribute('class','imgForm')
 titleForm.textContent='ADD POST'
@@ -33,6 +34,10 @@ fromPost.appendChild(inputFromPost)
 fromPost.appendChild(addPost)
 fromPost.appendChild(imgForm)
 
+window.addEventListener('load',()=>{
+  document.querySelector('.loading').classList.add('hidden')
+})
+
 //!===================================================================
 let isChk=false
 fetch('/user').then(res=>res.json()).then(res=>{
@@ -41,16 +46,28 @@ fetch('/user').then(res=>res.json()).then(res=>{
     btnBox.appendChild(signinBtn)
     rigsterBtn.setAttribute('class','btn-grad')
     signinBtn.setAttribute('class','btn-grad')
-    rigsterBtn.textContent='REGISTER'
+    rigsterBtn.textContent='SIGN UP'
     signinBtn.textContent='SIGN IN'
   }else{
     user.textContent=res.name
     imgUser.src=res.img
     btnBox.appendChild(user)
     btnBox.appendChild(imgUser)
+    btnBox.appendChild(signOut)
+    signOut.textContent='Sign Out'
+    signOut.setAttribute('class','signOut')
     addPostBox.appendChild(fromPost)
-    // fromPost.append(imgUser)
 
+    signOut.addEventListener('click',()=>{
+      fetch('/sign-out', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({}),
+      
+      }).then(res=>window.location.href='/')
+    })
     addPost.addEventListener('click',(e)=>{
       e.preventDefault()
       const postInfo={
@@ -78,29 +95,24 @@ fetch('/user').then(res=>res.json()).then(res=>{
 rigsterBtn.addEventListener('click',()=>{
 
   if(!isChk){
-    rigsterForm.style.position='fixed';
-    rigsterForm.style.right='0%'
+    
+    rigsterForm.classList.add('showForm')
+    chk.checked=false
 
     isChk=true
-  console.log( chk.checked);
   }else{
-    rigsterForm.style.position='absolute';
-
-  rigsterForm.style.right='-100%'
+    rigsterForm.classList.remove('showForm')
   isChk=false
   }
 
 })
 signinBtn.addEventListener('click',()=>{
   if(!chk.checked){
-    rigsterForm.style.right='0%'
-    rigsterForm.style.position='fixed';
-
+    rigsterForm.classList.add('showForm')
   chk.checked=true
-  console.log( chk.checked);
   }else{
-    rigsterForm.style.position='absolute';
-  rigsterForm.style.right='-100%'
+    rigsterForm.classList.remove('showForm')
+
   chk.checked=false
 
   }
@@ -108,11 +120,11 @@ signinBtn.addEventListener('click',()=>{
 })
 
 posts.addEventListener('click',()=>{
-  if (    rigsterForm.style.position==='fixed'  ) {
+  if (rigsterForm.classList[1]==='showForm') {
     isChk=false
-    rigsterForm.style.position='absolute';
-    rigsterForm.style.right='-100%';
-        console.log(isChk);
+    rigsterForm.classList.remove('showForm')
+
+    chk.checked=false
   }
 
 })
