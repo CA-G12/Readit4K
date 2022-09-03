@@ -137,6 +137,22 @@ function createPost(item,res) {
     deleteBtn.textContent='X'
     article.appendChild(deleteBtn)
     deleteBtn.setAttribute('class','deleteBtn')
+    deleteBtn.addEventListener('click',()=>{
+      article.remove()
+      const deletePost={
+        id:item.id,
+        user_id:res.id
+      }
+      fetch('/delete-post', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(deletePost),
+      
+      })
+    })
+
   }
   starIcon.setAttribute('class','fa-solid fa-star starIcon ')         
 
