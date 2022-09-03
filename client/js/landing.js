@@ -15,6 +15,9 @@ const loginForm=document.querySelector('.login')
 const btnBox=document.querySelector('.buttons-box')
 const user=document.createElement('h2')
 const imgUser=document.createElement('img')
+const chk=document.querySelector('#chk')
+const body=document.querySelector('body')
+let isChk=false
 fetch('/user').then(res=>res.json()).then(res=>{
   if(res.msg){
     btnBox.appendChild(rigsterBtn)
@@ -34,20 +37,43 @@ fetch('/user').then(res=>res.json()).then(res=>{
 })
 
 
-posts.addEventListener('click',()=>{
-  rigsterForm.style.bottom='1500px'
 
-})
 
 rigsterBtn.addEventListener('click',()=>{
-  rigsterForm.style.bottom='0px'
-  loginForm.style.transform='translateY(-180px)'
+
+  if(!isChk){
+  rigsterForm.style.bottom='-80px'
+  isChk=true
+  console.log( chk.checked);
+  }else{
+  rigsterForm.style.bottom='1500px'
+  isChk=false
+  }
 
 })
 signinBtn.addEventListener('click',()=>{
-  rigsterForm.style.bottom='0px'
-  loginForm.style.transform='translateY(-620px)'
+  if(!chk.checked){
+    rigsterForm.style.bottom='-80px'
+  // loginForm.style.transform='translateY(-180px)'
+
+  chk.checked=true
+  console.log( chk.checked);
+  }else{
+    console.log('tt');
+  rigsterForm.style.bottom='1500px'
+  chk.checked=false
+
+  }
   
+})
+
+posts.addEventListener('click',()=>{
+  if (rigsterForm.style.bottom=='-80px') {
+    isChk=false
+    rigsterForm.style.bottom='1500px'
+    console.log(isChk);
+  }
+
 })
 signUpBtn.addEventListener('click',(e)=>{
   e.preventDefault()
@@ -74,7 +100,50 @@ function createPost(item,res) {
     article.appendChild(deleteBtn)
     deleteBtn.setAttribute('class','deleteBtn')
   }
-   starIcon.setAttribute('class','fa-solid fa-star starIcon')         
+  starIcon.setAttribute('class','fa-solid fa-star starIcon ')         
+
+
+  if(item.nameStar ){
+    let islike=item.nameStar.json_agg.some(e=>e.user_id===res.id)
+    if(islike){
+      starIcon.setAttribute('class','fa-solid fa-star starIcon mystyle')         
+    }else{
+      starIcon.setAttribute('class','fa-solid fa-star starIcon ')         
+    }
+
+  }
+  if(res.id){
+    starIcon.addEventListener('click',()=>{
+      starIcon.classList.toggle('mystyle')
+      const isStar={
+        user_id:res.id,
+        post_id:item.id
+      }
+      fetch('/is-star', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(isStar),
+      
+      })
+
+
+
+     if( starIcon.classList[3]==='mystyle'){
+
+      star.textContent=+( star.textContent) +1
+     }else{
+      star.textContent=+( star.textContent) -1
+     }  })
+  }else{
+    starIcon.addEventListener('click',()=>{
+  //  isChk=true
+  //  rigsterForm.style.bottom='0px'
+
+    })
+  }
+  
   star.setAttribute('class','starNum')
   const comments=document.createElement('ul')
   nameUser.textContent=item.name

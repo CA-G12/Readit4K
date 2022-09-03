@@ -12,11 +12,17 @@ const  connection=require('../config/connection');
            as p  order by p.s DESC;`
           return connection.query(query)
     }
+    const getStarsData=()=>{
+      const query=`select stars.post_id ,
+      json_agg(json_build_object('user_id',users.id,'username',users.name,'img',users.img)) 
+      from stars join users on users.id=stars.user_id group by stars.post_id;`
+      return connection.query(query)
+    }
    const  getComments=()=>{
       const query=`select comments.*,users.id,users.email,users.name,users.img from comments left join users on comments.user_id =users.id;`
       return connection.query(query)}
     
-module.exports={getAllpostswithUseAndStars,getComments};
+module.exports={getAllpostswithUseAndStars,getComments,getStarsData};
 
 
 // `
@@ -44,3 +50,9 @@ module.exports={getAllpostswithUseAndStars,getComments};
 // select posts.post,v.b from posts left join ( select posts.id,  json_agg(stars.*) as b from posts left join stars on posts.id=stars.post_id group by posts.id) as v on v.id=posts.id;
 
 // `
+// SELECT 
+//   stars.post_id, 
+//   ,json_agg(json_build_object('col1', users.id, 'col2', users.name) AS item
+// FROM stars
+// JOIN b ON stars.user_id = users.id
+// GROUP BY stars.id,;
