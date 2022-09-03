@@ -25,8 +25,14 @@ const  connection=require('../config/connection');
       const query=`insert into posts (user_id ,post) values ($1,$2) returning *;`
       return connection.query(query,[user_id,post])
     }
+    const removePost=(id)=>{
+      const query=` delete from posts where id=$1;`
+      return connection.query(query,[id])
+}
     
-module.exports={getAllpostswithUseAndStars,getComments,getStarsData,addPostQuery};
+module.exports={getAllpostswithUseAndStars,
+  getComments,getStarsData,addPostQuery
+,removePost};
 
 
 // `
