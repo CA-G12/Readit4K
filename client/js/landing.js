@@ -66,7 +66,9 @@ fetch('/user').then(res=>res.json()).then(res=>{
         },
         body: JSON.stringify({}),
       
-      }).then(window.location.href='/')
+      }).then(()=>{
+        alert('Good Bye')
+        window.location.href='/'})
     })
     addPost.addEventListener('click',(e)=>{
       e.preventDefault()
@@ -422,7 +424,7 @@ function signUp(){
   
   }).then(res=>res.json()).then(res=>{
     if(res.msg){
-      console.log(false);
+      alert(res.msg)
     }else{
       window.location.href='/'
     }
@@ -444,7 +446,7 @@ function signUp(){
     
     }).then(res=>res.json()).then(res=>{
       if(res.msg){
-        console.log(false);
+alert(res.msg)
       }else{
         window.location.href='/'
       }
