@@ -67,7 +67,7 @@ fetch('/user').then(res=>res.json()).then(res=>{
         body: JSON.stringify({}),
       
       }).then(()=>{
-        alert('Good Bye')
+
         window.location.href='/'})
     })
     addPost.addEventListener('click',(e)=>{

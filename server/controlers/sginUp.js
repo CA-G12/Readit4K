@@ -7,7 +7,7 @@ const signUp=(req,res)=>{
   const {error}=signUpSchema.validate(req.body)
   if(!error)  {
     userIsExist(email).then(({rows})=>{if(rows[0]){
-      res.json({msg:"email is exist"})
+      res.status(400).json({msg:"email is exist"})
     }else{
       bcrypt.hash(password,12).then(hashPassword=>
         saveNewUser(name,email,hashPassword,img).

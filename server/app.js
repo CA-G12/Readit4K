@@ -30,5 +30,13 @@ app.use(express.static(path.join(__dirname, '..', 'client')))
 
 
 app.use(router)
+
+app.use((req,res)=>{
+  res.status(404).sendFile(path.join(__dirname, '..', 'client','errorPage','404.html'))
+
+})
+app.use((err,req,res,next)=>{
+  res.status(500).send('server not found')
+})
 module.exports=app
 
