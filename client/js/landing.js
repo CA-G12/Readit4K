@@ -141,14 +141,58 @@ signInBtn.addEventListener('click',(e)=>{
 // fetch('/get-posts').then(res=>res.json()).then(posts=>handelPosts(posts))
 
 function createPost(item,res) {
+  let isUpdate=false
   const article =document.createElement('article')
   article.setAttribute('class','card')
   const post =document.createElement('p')
   const nameUser =document.createElement('h3')
   const star =document.createElement('p')
   const starIcon =document.createElement('i')
+  const inputUpdate=document.createElement('textarea')
   post.textContent=item.post
+  inputUpdate.setAttribute('class','inputUpdate')
+  const updateBtn=document.createElement('i')
+  updateBtn.setAttribute('class','fa-solid fa-pencil upDate')
   post.setAttribute('class','post')
+  
+  if(item.user_id===res.id){
+    article.appendChild(updateBtn)
+    updateBtn.addEventListener('click',()=>{
+      if(isUpdate===false){
+        inputUpdate.style.display='block';
+        post.style.display='none'
+        inputUpdate.value=post.textContent
+        updateBtn.setAttribute('class','fa-solid fa-floppy-disk upDate')
+        isUpdate=true
+      }else{
+        const updatePost={
+          user_id:res.id,
+          post_id:item.id,
+          postUpdate:inputUpdate.value
+         }
+        isUpdate=false
+        updateBtn.setAttribute('class','fa-solid fa-pencil upDate')
+       inputUpdate.style.display='none';
+       post.style.display='block'
+
+       fetch('/put-post', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatePost),
+      
+      }).then(res=>res.json()).then(res=>post.textContent=res.post)
+  
+
+      }
+    
+    })
+  }
+
+
+
+
   if(item.user_id===res.id){
     const deleteBtn=document.createElement('button')
     deleteBtn.textContent='X'
@@ -257,6 +301,7 @@ function createPost(item,res) {
   article.appendChild(nameUser)
   article.appendChild(starIcon)
   article.appendChild(post)
+  article.appendChild(inputUpdate)
   article.appendChild(star)
   article.appendChild(commentInputBox)
   article.appendChild(comments)
@@ -271,6 +316,7 @@ if(item.comments){
 
 }
 function handelComment(e,comments,res,item) {
+  let isUpdate=false
   const comment =document.createElement('section')
   const box=document.createElement('div')
   const author =document.createElement('h4')
@@ -279,6 +325,43 @@ function handelComment(e,comments,res,item) {
   const deleteComment=document.createElement('button')
   deleteComment.textContent='x'
   deleteComment.setAttribute('class','deleteComment')
+  const updateCommentBtn=document.createElement('i')
+  updateCommentBtn.setAttribute('class','fa-solid fa-pencil updateCommentBtn')
+  const updateCommentInput=document.createElement('input')
+  updateCommentInput.setAttribute('class','updateCommentInput')
+
+  if(res.id===e.user_id){
+    comment.appendChild(updateCommentBtn)
+    updateCommentBtn.addEventListener('click',()=>{
+      if(isUpdate===false){
+        isUpdate=true
+        updateCommentInput.style.display='block'
+        content.style.display='none'
+        updateCommentInput.value=content.textContent
+        updateCommentBtn.setAttribute('class','fa-solid fa-floppy-disk updateCommentBtn')
+      }else{
+        const updateComment={
+          user_id:res.id,
+          comment_id:e.id,
+          comment:updateCommentInput.value
+        }
+        updateCommentBtn.setAttribute('class','fa-solid fa-pencil updateCommentBtn')
+        isUpdate=false
+        updateCommentInput.style.display='none'
+        content.style.display='block'
+        fetch('/put-comment', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(updateComment),
+        
+        }).then(res=>res.json()).then(res=>content.textContent=res.comment)
+    
+      }
+    })
+  }
+
 
   if(res.id===e.user_id|| res.id==item.user_id){
     comment.appendChild(deleteComment)
@@ -311,6 +394,8 @@ function handelComment(e,comments,res,item) {
   box.appendChild(author)
   comment.appendChild(content)
   comment.setAttribute('class','comment')
+  comment.appendChild(updateCommentInput)
+
   comments.appendChild(comment)
 }
 

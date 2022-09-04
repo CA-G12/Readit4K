@@ -29,10 +29,14 @@ const  connection=require('../config/connection');
       const query=` delete from posts where id=$1;`
       return connection.query(query,[id])
 }
+const updatePostQuery=(content,id)=>{
+  const query=` update posts set post =$1 where posts.id =$2 returning posts.post;`
+  return connection.query(query,[content,id])
+}
     
 module.exports={getAllpostswithUseAndStars,
   getComments,getStarsData,addPostQuery
-,removePost};
+,removePost,updatePostQuery};
 
 
 // `
