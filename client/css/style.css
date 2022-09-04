@@ -34,7 +34,7 @@ header {
   padding: 10px 20px;
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 20;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -292,13 +292,13 @@ label[for="chk"] {
 
 .starNum {
   position: absolute;
-  top: 30px;
+  top: 95px;
   right: 35px;
 }
 
 .starIcon {
   position: absolute;
-  top: 30px;
+  top: 94px;
   right: 50px;
 }
 
@@ -539,4 +539,43 @@ label[for="chk"] {
   color: white;
   font-weight: 600;
   padding: 7px 0 !important;
+}
+
+.inputUpdate {
+  display: none;
+  min-height: 130px;
+  background-color: #0d1018;
+  padding: 11px;
+  color: white;
+  font-size: 20px;
+}
+
+.upDate {
+  position: absolute;
+  top: 8px;
+  right: 43px;
+  font-size: 12px;
+  padding: 7px;
+  background: #080d1a;
+  border-radius: 50%;
+}
+
+.updateCommentInput {
+  display: none;
+  background-color: #0d1018;
+  color: white;
+  width: 100%;
+  padding-left: 57px;
+  outline: none;
+  border: none;
+}
+
+.updateCommentBtn {
+  position: absolute;
+  top: 5px;
+  right: 48px;
+  font-size: 11px;
+  padding: 5px;
+  background-color: #232526;
+  border-radius: 50%;
 }

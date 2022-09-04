@@ -7,5 +7,8 @@ const deleteCommentQuery=(id)=>{
   const query=` delete from comments where id=$1;`
   return connection.query(query,[id])
 }
-
-module.exports={addCommentQuery,deleteCommentQuery}
+const updatecommentQuery=(content,id)=>{
+  const query=` update comments set comment =$1 where comments.id =$2 returning comments.comment;`
+  return connection.query(query,[content,id])
+}
+module.exports={addCommentQuery,deleteCommentQuery,updatecommentQuery}

@@ -1,5 +1,6 @@
 const {getAllPosts,signUp,signIn,checkStar
-  ,addPost,deletePost,addComment,signOut,deleteComment}=require('../controlers')
+  ,addPost,deletePost,addComment,signOut,deleteComment,
+  updatePost,updateComment}=require('../controlers')
 const router = require('express').Router();
 
 router.get('/get-posts',getAllPosts);
@@ -11,4 +12,6 @@ router.delete('/delete-post',deletePost)
 router.post('/add-comment',addComment)
 router.post('/sign-out',signOut)
 router.delete('/delete-comment',deleteComment)
+router.put('/put-post',updatePost)
+router.put('/put-comment',updateComment)
 module.exports=router

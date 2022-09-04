@@ -7,7 +7,10 @@ const deletePost=require('./deletePost')
 const addComment=require('./addComment')
 const signOut=require('./signOut')
 const deleteComment=require('./deleteComment')
+const updatePost=require('./updatePost')
+const updateComment=require('./updateComment')
 module.exports={
   getAllPosts,signUp,signIn,checkStar,
-  addPost,deletePost,addComment,signOut,deleteComment
+  addPost,deletePost,addComment,signOut,
+  deleteComment,updatePost,updateComment
 }
