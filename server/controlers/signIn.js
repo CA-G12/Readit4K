@@ -10,7 +10,7 @@ const {error}=signInSchema.validate(req.body)
 if(!error){
   userIsExist(email).then(({rows})=>{
     if (rows.length===0) {
-      res.json({msg:"email is not exist"})
+      res.status(400).json({msg:"email is not exist"})
     }else{
   
       bcrypt.compare(password,rows[0].password).then(result=>{
@@ -19,7 +19,7 @@ if(!error){
           .then(({rows})=>jwtFun.jwtFun({id:rows[0].id,name:rows[0].name,img:rows[0].img},res))
         }else{
   
-  res.json({msg:"password is false"})
+  res.status(400).json({msg:"password is not correct"})
         }
       }).catch(err=>res.send(err))
     }
