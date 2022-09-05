@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Mono:wght@300;378&family=Source+Sans+Pro:ital@1&family=Zen+Antique&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Secular+One&display=swap');
 
 * {
   margin: 0;
@@ -100,7 +100,7 @@ button {
 .main {
   position: fixed;
   width: 350px;
-  background-color: #161624aa;
+  background-color: #161624;
   height: 625px;
   overflow: hidden;
   border-radius: 10px;
@@ -253,12 +253,12 @@ label[for="chk"] {
   min-width: 350px;
   background-size: 100%;
   min-height: 280px;
-  background: rgba(0, 0, 0, 0.192);
+  background: rgb(23 24 32 / 88%);
   position: relative;
   color: var(--aliceblue);
   display: flex;
   flex-direction: column;
-  box-shadow: 5px 20px 50px #000;
+  box-shadow: 4px 6px 20px #000;
   border-radius: 12px 18px 0 0;
   justify-content: space-between;
 
@@ -275,7 +275,7 @@ label[for="chk"] {
 
 .card h3 {
   font-size: 20px;
-  font-family: 'Roboto Slab', serif;
+  font-family: 'Secular One', sans-serif;
   font-style: normal;
   font-weight: 900;
   color: rgb(103, 71, 31);
@@ -286,7 +286,7 @@ label[for="chk"] {
   background: linear-gradient(180deg, #ffb504 0%, #caba93 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 86%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+  box-shadow: 0 -7px 25px 0 rgb(0 0 0 / 28%), 0 7px 20px 0 rgb(0 0 0 / 19%);
   background-clip: text;
 }
 
