@@ -288,7 +288,6 @@ label[for="chk"] {
   -webkit-text-fill-color: transparent;
   box-shadow: 0 -7px 25px 0 rgb(0 0 0 / 28%), 0 7px 20px 0 rgb(0 0 0 / 19%);
   background-clip: text;
-  background-image: url(https://as2.ftcdn.net/v2/jpg/01/10/99/23/1000_F_110992367_alci1Zd2mMooK9cCE03yRF3U92TdtWqK.jpg);
 
 }
 
@@ -601,7 +600,6 @@ label[for="chk"] {
 .boxTitle {
   background-size: 100%;
   border-radius: 12px 12px 0 0;
-  background-image: url(https://i.pinimg.com/736x/51/90/dd/5190ddce2a7a00c33afa4fdd125dd1d9.jpg);
 
 }
 
@@ -622,7 +620,6 @@ label[for="chk"] {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   box-shadow: 0 -7px 25px 0 rgb(0 0 0 / 28%), 0 7px 20px 0 rgb(0 0 0 / 19%);
-  background-image: url(https://as2.ftcdn.net/v2/jpg/01/10/99/23/1000_F_110992367_alci1Zd2mMooK9cCE03yRF3U92TdtWqK.jpg);
 }
 
 .organ {
@@ -688,7 +685,8 @@ label[for="chk"] {
   .join-us {
     display: none;
   }
-  .posts{
+
+  .posts {
     width: 88%;
   }
 }
