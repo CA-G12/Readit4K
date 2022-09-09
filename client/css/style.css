@@ -243,19 +243,19 @@ label[for="chk"] {
 .posts {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 100px;
-  gap: 100px;
+
+  width: 40%;
 }
 
 .card {
-  width: 50%;
+  width: 100%;
   min-width: 350px;
   background-size: 100%;
   min-height: 280px;
   background: rgb(23 24 32 / 88%);
   position: relative;
   color: var(--aliceblue);
+  margin-bottom: 100px;
   display: flex;
   flex-direction: column;
   box-shadow: 4px 6px 20px #000;
@@ -288,6 +288,8 @@ label[for="chk"] {
   -webkit-text-fill-color: transparent;
   box-shadow: 0 -7px 25px 0 rgb(0 0 0 / 28%), 0 7px 20px 0 rgb(0 0 0 / 19%);
   background-clip: text;
+  background-image: url(https://as2.ftcdn.net/v2/jpg/01/10/99/23/1000_F_110992367_alci1Zd2mMooK9cCE03yRF3U92TdtWqK.jpg);
+
 }
 
 .starNum {
@@ -321,20 +323,19 @@ label[for="chk"] {
 }
 
 .add-post {
-  display: flex;
+  width: 100%;
   justify-content: center;
   /* max-width: 400px; */
 
 }
 
 .formPost {
-  display: flex;
   position: relative;
   flex-direction: column;
   min-width: 350px;
-  max-width: 450px;
-  min-height: 250px;
-  margin-top: 100px;
+  width: 100%;
+  margin-bottom: 100px;
+  /* min-height: 250px; */
   align-items: center;
   text-align: center;
   background-color: #161624aa;
@@ -342,6 +343,7 @@ label[for="chk"] {
   box-shadow: 5px 20px 50px #000;
   /* bottom: 1500px; */
   transition: 0.5s linear;
+  padding-bottom: 20px;
   z-index: 10;
 }
 
@@ -367,6 +369,7 @@ label[for="chk"] {
   font-size: 16px;
   color: #fff;
   margin-bottom: 15px;
+  height: 150PX;
   border: none;
   border-bottom: 1px solid #fff;
   outline: none;
@@ -578,4 +581,114 @@ label[for="chk"] {
   padding: 5px;
   background-color: #232526;
   border-radius: 50%;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 5%;
+  margin-top: 200px;
+
+}
+
+.join-us {
+  width: 30%;
+  height: 500px;
+  background-color: #25262e;
+  border-radius: 12px;
+}
+
+.boxTitle {
+  background-size: 100%;
+  border-radius: 12px 12px 0 0;
+  background-image: url(https://i.pinimg.com/736x/51/90/dd/5190ddce2a7a00c33afa4fdd125dd1d9.jpg);
+
+}
+
+.join-us h3 {
+  padding: 30px 0 10px 0;
+  text-align: center;
+  color: white;
+  font-size: 20px;
+  font-family: 'Secular One', sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  color: rgb(103, 71, 31);
+  font-size: 40px;
+  line-height: 73px;
+  text-align: center;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #ffb504 0%, #caba93 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  box-shadow: 0 -7px 25px 0 rgb(0 0 0 / 28%), 0 7px 20px 0 rgb(0 0 0 / 19%);
+  background-image: url(https://as2.ftcdn.net/v2/jpg/01/10/99/23/1000_F_110992367_alci1Zd2mMooK9cCE03yRF3U92TdtWqK.jpg);
+}
+
+.organ {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+
+  padding: 5px 10 px;
+}
+
+.organ img {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+
+.organs {
+  padding: 20px;
+}
+
+.organ h4 {
+  font-family: 'Roboto Slab', serif;
+  font-style: normal;
+  color: rgb(103, 71, 31);
+  line-height: 33px;
+  font-size: 100%;
+  text-align: center;
+  background: linear-gradient(180deg, #ffb504 0%, #caba93 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.organ a {
+  text-decoration: none;
+  font-family: 'Roboto Slab', serif;
+  font-style: normal;
+  color: rgb(103, 71, 31);
+  line-height: 33px;
+  font-size: 20px;
+  text-align: center;
+  background: linear-gradient(180deg, #ffb504 0%, #caba93 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.boxLink {
+  padding: 5px 15px;
+  border-radius: 20px;
+  background-image: linear-gradient(to right, #141516 0%, #171718 51%, #232526 100%) !important
+}
+
+.boxLink:hover {
+  background-position: right center;
+  /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 750px) {
+  .join-us {
+    display: none;
+  }
+  .posts{
+    width: 88%;
+  }
 }
